@@ -1,6 +1,6 @@
 import { Box, Card, Grid, Icon, IconButton, styled, Tooltip } from '@mui/material';
 import { Small } from 'app/components/Typography';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 const StyledCard = styled(Card)(({ theme }) => ({
   display: 'flex',
@@ -28,28 +28,21 @@ const Heading = styled('h6')(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
 
-const StatCards = () => {
+const StatCardsRight = () => {
   const cardList = [
-    { name: 'Plan a Match', amount: 3050, icon: 'group', page: '/pages/addPlayer' },
-    { name: 'Teams and Players', amount: '$80,500', icon: 'attach_money', page: '/pages/addPlayer' },
-    { name: 'Create New Report', amount: '8.5% Stock Surplus', icon: 'store', page: '/pages/addPlayer' },
-    { name: 'Positions', amount: '305 Orders', icon: 'shopping_cart', page: '/pages/addPlayer' },
-    { name: 'Unfinished Reports', amount: 3050, icon: 'group', page: '/pages/addPlayer' },
-    { name: 'Assessment parameter', amount: '$80,500', icon: 'attach_money', page: '/pages/addPlayer' },
-    { name: 'Finished Reports', amount: '8.5% Stock Surplus', icon: 'store', page: '/pages/addPlayer' },
-    { name: 'Match Details', amount: '305 Orders', icon: 'shopping_cart', page: '/pages/addPlayer' },
-    { name: 'Compare Players', amount: 3050, icon: 'group', page: '/pages/addPlayer' },
-    { name: 'My Brand', amount: '$80,500', icon: 'attach_money', page: '/pages/addPlayer' },
-    { name: 'My Videos', amount: '8.5% Stock Surplus', icon: 'store', page: '/pages/addPlayer' },
-    { name: 'My Account', amount: '305 Orders', icon: 'shopping_cart', page: '/pages/addPlayer' },
+    { name: 'New Leads', amount: 3050, icon: 'group' },
+    { name: 'This week Sales', amount: '$80,500', icon: 'attach_money' },
+    { name: 'Inventory Status', amount: '8.5% Stock Surplus', icon: 'store' },
   ];
 
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
+
 
   return (
     <Grid container spacing={3} sx={{ mb: '24px' }}>
       {cardList.map((item, index) => (
-        <Grid item xs={12} md={6} key={index}>
+        <Grid item xs={12} md={12} key={index}>
           <StyledCard elevation={6}>
             <ContentBox>
               <Icon className="icon">{item.icon}</Icon>
@@ -60,7 +53,7 @@ const StatCards = () => {
             </ContentBox>
 
             <Tooltip title="View Details" placement="top">
-              <IconButton onClick={() => navigate(item.page)}>
+              <IconButton onClick={() => navigate('/pages/addPlayer')}>
                 <Icon>arrow_right_alt</Icon>
               </IconButton>
             </Tooltip>
@@ -71,4 +64,4 @@ const StatCards = () => {
   );
 };
 
-export default StatCards;
+export default StatCardsRight;

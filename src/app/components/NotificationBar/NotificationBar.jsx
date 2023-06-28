@@ -95,9 +95,9 @@ const NotificationBar = ({ container }) => {
   return (
     <Fragment>
       <IconButton onClick={handleDrawerToggle}>
-        <Badge color="secondary" badgeContent={notifications?.length}>
-          <Icon sx={{ color: textColor }}>notifications</Icon>
-        </Badge>
+        {/* <Badge color="secondary" badgeContent={notifications?.length}> */}
+          {/* <Icon sx={{ color: textColor }}>notifications</Icon> */}
+        {/* </Badge> */}
       </IconButton>
 
       <ThemeProvider theme={settings.themes[settings.activeTheme]}>

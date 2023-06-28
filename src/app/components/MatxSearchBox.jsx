@@ -39,7 +39,7 @@ const MatxSearchBox = () => {
     <Fragment>
       {!open && (
         <IconButton onClick={toggle}>
-          <Icon sx={{ color: 'text.primary' }}>search</Icon>
+          {/* <Icon sx={{ color: 'text.primary' }}>search</Icon> */}
         </IconButton>
       )}
 

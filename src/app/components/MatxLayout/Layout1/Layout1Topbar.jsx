@@ -23,6 +23,7 @@ import { Span } from '../../Typography';
 import NotificationBar from '../../NotificationBar/NotificationBar';
 import ShoppingCart from '../../ShoppingCart';
 
+
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary
 }));
@@ -102,6 +103,10 @@ const Layout1Topbar = () => {
     updateSidebarMode({ mode });
   };
 
+
+  let routeName = window.location.pathname
+
+
   return (
     <TopbarRoot>
       <TopbarContainer>
@@ -110,7 +115,7 @@ const Layout1Topbar = () => {
             <Icon>menu</Icon>
           </StyledIconButton>
 
-          <IconBox>
+          {/* <IconBox>
             <StyledIconButton>
               <Icon>mail_outline</Icon>
             </StyledIconButton>
@@ -122,7 +127,7 @@ const Layout1Topbar = () => {
             <StyledIconButton>
               <Icon>star_outline</Icon>
             </StyledIconButton>
-          </IconBox>
+          </IconBox> */}
         </Box>
 
         <Box display="flex" alignItems="center">

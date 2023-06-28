@@ -84,15 +84,18 @@ const Layout1 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMdScreen]);
 
+  let routeName = window.location.pathname
+
+
   return (
     <Layout1Root className={layoutClasses}>
-      {showSidenav && sidenavMode !== 'close' && (
+      {showSidenav && sidenavMode !== 'close' && routeName !== "/dashboard/defaults" && (
         <SidenavTheme>
           <Layout1Sidenav />
         </SidenavTheme>
       )}
 
-      <LayoutContainer width={sidenavWidth} open={secondarySidebar.open}>
+      <LayoutContainer width={routeName !== "/dashboard/defaults" ?  sidenavWidth : '0px'} open={secondarySidebar.open}>
         {layout1Settings.topbar.show && layout1Settings.topbar.fixed && (
           <ThemeProvider theme={topbarTheme}>
             <Layout1Topbar fixed={true} className="elevation-z8" />
@@ -137,7 +140,7 @@ const Layout1 = () => {
         {settings.footer.show && settings.footer.fixed && <Footer />}
       </LayoutContainer>
 
-      {settings.secondarySidebar.show && <SecondarySidebar />}
+      {/* {settings.secondarySidebar.show && <SecondarySidebar />} */}
     </Layout1Root>
   );
 };
