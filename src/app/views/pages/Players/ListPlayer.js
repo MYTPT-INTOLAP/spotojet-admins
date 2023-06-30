@@ -50,8 +50,8 @@ export default function ListPlayer() {
       },
     },
     {
-      name: "agGroup",
-      label: "Age Group",
+      name: "dob",
+      label: "DOB",
       options: {
         filter: true,
         sort: false,
@@ -63,6 +63,14 @@ export default function ListPlayer() {
       options: {
         filter: true,
         sort: true,
+      },
+    },
+    {
+      name: "club",
+      label: "Club",
+      options: {
+        filter: true,
+        sort: false,
       },
     },
     {
@@ -82,7 +90,7 @@ export default function ListPlayer() {
         customBodyRender: (data, dataIndex, rowIndex) => {
           return (
             <Box sx={{ flexDirection: 'row' }}>
-              <Button onClick={()=> navigate('/pages/addPlayer')} >
+              <Button onClick={() => navigate('/pages/addPlayer')} >
                 <EditIcon />
               </Button>
               <Button >
@@ -97,23 +105,99 @@ export default function ListPlayer() {
   ];
 
   const data = [
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
-    { name: "Joe James", position: 'Goalkeeper', gender: 'M', agGroup: 'U18', team: "Test Corp", location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+    { name: "Joe James", position: 'Goalkeeper', gender: 'M', team: "U18", dob: '29-06-2023', club: 'Stars FC', location: "kolkata" },
+  ];
+
+
+
+  
+  
+  const acolumns = [
+    {
+      name: "team",
+      label: "Team",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "gender",
+      label: "Gender",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
+      name: "noTeam",
+      label: "No Of Teams",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
+      name: "coaches",
+      label: "Coaches",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "players",
+      label: "Players",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
+      name: "location",
+      label: "Location",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+  ];
+
+
+
+
+
+  const datas = [
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
+    { team: "U10", gender: 'M', noTeam: '8',  coaches: "Koushik Mandal", players: '25', location: 'kolkata' },
   ];
 
   const options = {
@@ -128,18 +212,29 @@ export default function ListPlayer() {
     rowsPerPage: 10,
     customToolbar: () => (
       <>
-        <Button onClick={()=> navigate('/pages/addPlayer')}>
+        <Button onClick={() => navigate('/pages/addPlayer')}>
           <AddIcon sx={{ color: 'gray', mr: 1 }} />
-          <p style={{color: 'gray'}}>Add New Player</p>
+          <p style={{ color: 'gray' }}>Add New Player</p>
         </Button>
         <Button>
-          <CloudUploadIcon sx={{ color: 'gray', mr: 1}} />
-          <p style={{color: 'gray'}}>Bulk upload</p>
+          <CloudUploadIcon sx={{ color: 'gray', mr: 1 }} />
+          <p style={{ color: 'gray' }}>Bulk upload</p>
         </Button>
       </>
     ),
   };
   // 
+
+
+
+  const aoptions = {
+    // filterType: 'checkbox',
+    filter: false,
+    selectableRows: 'multiple',
+    filterType: 'dropdown',
+    responsive: 'horizontal',
+    rowsPerPage: 10,
+  };
 
   return (
     <Container>
@@ -147,7 +242,7 @@ export default function ListPlayer() {
         <Breadcrumb routeSegments={[{ name: 'Pages', path: '/pages' }, { name: 'List Player' }]} />
       </Box>
 
-      <Stack spacing={3}>
+      <Stack spacing={3} sx={{mb: 15}}>
         {/* <SimpleCard title="Player List"> */}
         <MUIDataTable
           title={"Player List"}
@@ -156,6 +251,15 @@ export default function ListPlayer() {
           options={options}
         />
         {/* </SimpleCard> */}
+      </Stack>
+
+      <Stack spacing={3} >
+        <MUIDataTable
+          title={"Stars FC Teams"}
+          data={datas}
+          columns={acolumns}
+          options={aoptions}
+        />
       </Stack>
     </Container>
   )

@@ -9,6 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useNavigate } from "react-router-dom";
 
+
 const Container = styled('div')(({ theme }) => ({
   margin: '30px',
   [theme.breakpoints.down('sm')]: { margin: '16px' },
@@ -19,44 +20,51 @@ const Container = styled('div')(({ theme }) => ({
 }));
 
 
-export default function ListCoach() {
+export default function ListVideos() {
 
   const navigate = useNavigate();
 
-
   const columns = [
     {
-      name: "name",
-      label: "Name",
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
-    
-    {
-      name: "team",
-      label: "Team",
+      name: "video",
+      label: "Video",
       options: {
         filter: true,
         sort: true,
       },
     },
     {
-      name: "phone",
-      label: "Phone",
-      options: {
-        filter: true,
-        sort: true,
-      },
-    }, {
-      name: "email",
-      label: "Email",
+      name: "report",
+      label: "Report",
       options: {
         filter: true,
         sort: true,
       },
     },
+    {
+      name: "player",
+      label: "Player",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
+      name: "date",
+      label: "Date",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
+        name: "comment",
+        label: "Comment",
+        options: {
+          filter: true,
+          sort: false,
+        },
+      },
     {
       name: "Action",
       label: "Action",
@@ -66,7 +74,7 @@ export default function ListCoach() {
         customBodyRender: (data, dataIndex, rowIndex) => {
           return (
             <Box sx={{ flexDirection: 'row' }}>
-              <Button onClick={() => navigate("/pages/addCoach")} >
+              <Button onClick={() => navigate('/pages/addPlayer')} >
                 <EditIcon />
               </Button>
               <Button >
@@ -81,25 +89,30 @@ export default function ListCoach() {
   ];
 
   const data = [
-  { name: "Joe James",phone: '+916296783642', email: 'wd.intolap@gmail.com', team: "U15,U16" },
-    
+    { video: "https://dfjd.com/fc.mp4", report: 'gfcgfcgcf', player: 'dsfhsgf, dfdfd', date: "26-06-2023", comment: 'sfdsfdf'},
+    { video: "https://dfjd.com/fc.mp4", report: 'gfcgfcgcf', player: 'dsfhsgf, dfdfd', date: "26-06-2023", comment: 'sfdsfdf'},
+    { video: "https://dfjd.com/fc.mp4", report: 'gfcgfcgcf', player: 'dsfhsgf, dfdfd', date: "26-06-2023", comment: 'sfdsfdf'},
+    { video: "https://dfjd.com/fc.mp4", report: 'gfcgfcgcf', player: 'dsfhsgf, dfdfd', date: "26-06-2023", comment: 'sfdsfdf'},
+    { video: "https://dfjd.com/fc.mp4", report: 'gfcgfcgcf', player: 'dsfhsgf, dfdfd', date: "26-06-2023", comment: 'sfdsfdf'},
+    { video: "https://dfjd.com/fc.mp4", report: 'gfcgfcgcf', player: 'dsfhsgf, dfdfd', date: "26-06-2023", comment: 'sfdsfdf'},
+    { video: "https://dfjd.com/fc.mp4", report: 'gfcgfcgcf', player: 'dsfhsgf, dfdfd', date: "26-06-2023", comment: 'sfdsfdf'},
   ];
 
+
+
+  
   const options = {
     // filterType: 'checkbox',
     filter: true,
-    onFilterChange: (changedColumn, filterList) => {
-      console.log(changedColumn, filterList);
-    },
     selectableRows: 'multiple',
     filterType: 'dropdown',
     responsive: 'horizontal',
     rowsPerPage: 10,
     customToolbar: () => (
       <>
-        <Button onClick={() => navigate("/pages/addCoach")}>
+        <Button onClick={() => navigate('/pages/addPlayer')}>
           <AddIcon sx={{ color: 'gray', mr: 1 }} />
-          <p style={{ color: 'gray' }}>Add New Coach</p>
+          <p style={{ color: 'gray' }}>Add New Player</p>
         </Button>
         <Button>
           <CloudUploadIcon sx={{ color: 'gray', mr: 1 }} />
@@ -108,17 +121,19 @@ export default function ListCoach() {
       </>
     ),
   };
+  // 
+
 
 
   return (
     <Container>
       <Box className="breadcrumb">
-        <Breadcrumb routeSegments={[{ name: 'Pages', path: '/pages' }, { name: 'List Coach' }]} />
+        <Breadcrumb routeSegments={[{ name: 'Pages', path: '/pages' }, { name: 'List Videos' }]} />
       </Box>
 
-      <Stack spacing={3}>
+      <Stack spacing={3} sx={{mb: 15}}>
         <MUIDataTable
-          title={"Coaches List"}
+          title={"List Videos"}
           data={data}
           columns={columns}
           options={options}

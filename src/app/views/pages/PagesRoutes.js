@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import Loadable from 'app/components/Loadable';
 
-// AddUFReports
+// 
 // const AppTable = Loadable(lazy(() => import('./tables/AppTable')));
 const AddPlayer = Loadable(lazy(() => import('./Players/AddPlayer')));
 const ListPlayer = Loadable(lazy(() => import('./Players/ListPlayer')));
@@ -14,6 +14,22 @@ const AddCoach = Loadable(lazy(() => import('./Coaches/AddCoach')));
 const ListCoach = Loadable(lazy(() => import('./Coaches/ListCoach')));
 
 const Position = Loadable(lazy(() => import('./Positions/Position')));
+
+
+const MatchesDetails = Loadable(lazy(() => import('./MatchesDetails/MatchesDetails')));
+
+
+const AssessmentParameters = Loadable(lazy(() => import('./AssessmentParameters/CreateTemplate')));
+
+
+const ListTemplates = Loadable(lazy(() => import('./AssessmentParameters/ListTemplates')));
+
+const ComparePlayers = Loadable(lazy(() => import('./ComparePlayers/ComparePlayers')));
+
+// ComparePlayers
+
+const AddVideos = Loadable(lazy(() => import('./MyVideos/AddVideos')));
+const ListVideos = Loadable(lazy(() => import('./MyVideos/ListVideos')));
 
 
 const AddCategories = Loadable(lazy(() => import('./CategoriesAndParameters/AddCategories')));
@@ -45,7 +61,23 @@ const pagesRoutes = [
   { path: '/pages/addCoach', element: <AddCoach /> },
   { path: '/pages/listCoach', element: <ListCoach /> },
 
-  { path: '/pages/psition', element: <Position /> },
+  { path: '/pages/position', element: <Position /> },
+
+  { path: '/pages/matchesDetails', element: <MatchesDetails /> },
+
+
+  { path: '/pages/createTemplate', element: <AssessmentParameters /> },
+
+
+  { path: '/pages/listTemplates', element: <ListTemplates /> },
+
+
+  { path: '/pages/comparePlayers', element: <ComparePlayers /> },
+
+  // 
+  { path: '/pages/addVideos', element: <AddVideos /> },
+  { path: '/pages/listVideos', element: <ListVideos /> },
+  
 
   { path: '/pages/addCategories', element: <AddCategories /> },
   { path: '/pages/listCategories', element: <ListCategories /> },

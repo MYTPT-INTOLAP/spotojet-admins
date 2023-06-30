@@ -132,33 +132,33 @@ export default function AddCoach() {
                                     </FormControl>
 
                                     <RadioGroup
-                                    row
-                                    name="gender"
-                                    sx={{ mb: 2 }}
-                                    value={gender || ""}
-                                    onChange={handleChange}
-                                >
-                                    <FormControlLabel
-                                        value="Male"
-                                        label="Male"
-                                        labelPlacement="end"
-                                        control={<Radio color="secondary" />}
-                                    />
+                                        row
+                                        name="gender"
+                                        sx={{ mb: 2 }}
+                                        value={gender || ""}
+                                        onChange={handleChange}
+                                    >
+                                        <FormControlLabel
+                                            value="Male"
+                                            label="Male"
+                                            labelPlacement="end"
+                                            control={<Radio color="secondary" />}
+                                        />
 
-                                    <FormControlLabel
-                                        value="Female"
-                                        label="Female"
-                                        labelPlacement="end"
-                                        control={<Radio color="secondary" />}
-                                    />
+                                        <FormControlLabel
+                                            value="Female"
+                                            label="Female"
+                                            labelPlacement="end"
+                                            control={<Radio color="secondary" />}
+                                        />
 
-                                    <FormControlLabel
-                                        value="Others"
-                                        label="Others"
-                                        labelPlacement="end"
-                                        control={<Radio color="secondary" />}
-                                    />
-                                </RadioGroup>
+                                        <FormControlLabel
+                                            value="Others"
+                                            label="Others"
+                                            labelPlacement="end"
+                                            control={<Radio color="secondary" />}
+                                        />
+                                    </RadioGroup>
 
                                 </Grid>
 
@@ -182,11 +182,12 @@ export default function AddCoach() {
                                         validators={["required", "isEmail"]}
                                         errorMessages={["this field is required", "email is not valid"]}
                                     />
+
                                 </Grid>
                             </Grid>
 
                             <Button color="primary" variant="contained" type="submit">
-                                <SaveIcon/>
+                                <SaveIcon />
                                 <Span sx={{ pl: 1, textTransform: "capitalize" }}>Save</Span>
                             </Button>
                         </ValidatorForm>

@@ -1,5 +1,5 @@
 export const navigations = [
-  { name: 'Cabin Page', path: '/dashboard/default', icon: 'dashboard' },
+  { name: 'Cabinet', path: '/dashboard/default', icon: 'dashboard' },
   { label: 'PAGES', type: 'label' },
   {
     name: 'Players',
@@ -32,36 +32,73 @@ export const navigations = [
     name: 'Positions',
     icon: 'brightness_low',
     children: [
-      { name: 'Position List', iconText: 'SI', path: '/pages/psition' },
+      { name: 'Position List', iconText: 'SI', path: '/pages/position' },
     ]
   },
 
   {
-    name: 'Categories',
+    name: 'Matches Details',
+    icon: 'brightness_low',
+    children: [
+      { name: 'Position List', iconText: 'SI', path: '/pages/matchesDetails' },
+    ]
+  },
+  // Videos
+
+  {
+    name: 'My Videos',
+    icon: 'brightness_low',
+    children: [
+      { name: 'Add Videos', iconText: 'SI', path: '/pages/addVideos' },
+      { name: 'List Videos', iconText: 'SI', path: '/pages/listVideos' },
+    ]
+  },
+  { name: 'Parameter Templates', path: '/pages/addCategories', icon: 'menu' },
+
+  // { name: 'Assessment Parameters', path: '/pages/assessmentParameters', icon: 'menu' },
+
+  {
+    name: 'Assessment Template',
     icon: 'menu',
     children: [
-      { name: 'Add Categories', iconText: 'SI', path: '/pages/addCategories' },
-      { name: 'List Categories', iconText: 'SU', path: '/pages/listCategories' },
+      { name: 'Create Template', iconText: 'SI', path: '/pages/createTemplate' },
+      { name: 'List Templates', iconText: 'SU', path: '/pages/listTemplates' },
     ]
   },
+  // 
+  // {
+  //   name: 'Parameter Templates',
+  //   icon: 'menu',
+  //   children: [
+  //     { name: 'Add Categories', iconText: 'SI', path: '/pages/addCategories' },
+  //     { name: 'List Categories', iconText: 'SU', path: '/pages/listCategories' },
+  //   ]
+  // },
 
-  {
-    name: 'Finished Reports',
-    icon: 'check_box',
-    children: [
-      { name: 'Add Finished Reports', iconText: 'SI', path: '/pages/addFReports' },
-      { name: 'List Finished Reports', iconText: 'SU', path: '/pages/listFReports' },
-    ]
-  },
+  { name: 'Finished Reports', path: '/pages/listFReports', icon: 'check_box' },
 
-  {
-    name: 'Unfinished Reports',
-    icon: 'check_box_outline_blank',
-    children: [
-      { name: 'Add Unfinished Reports', iconText: 'SI', path: '/pages/addUFReports' },
-      { name: 'List Unfinished Reports', iconText: 'SU', path: '/pages/listUFReports' },
-    ]
-  },
+  { name: 'Unfinished Reports', path: '/pages/listUFReports', icon: 'check_box_outline_blank' },
+
+
+  { name: 'Compare Players', path: '/pages/comparePlayers', icon: 'check_box_outline_blank' },
+
+  // {
+  //   name: 'Finished Reports',
+  //   icon: 'check_box',
+  //   children: [
+  //     // { name: 'Add Finished Reports', iconText: 'SI', path: '/pages/addFReports' },
+  //     { name: 'List Finished Reports', iconText: 'SU', path: '/pages/listFReports' },
+  //   ]
+  // },
+
+  // {
+  //   name: 'Unfinished Reports',
+  //   icon: 'check_box_outline_blank',
+  //   children: [
+  //     // { name: 'Add Unfinished Reports', iconText: 'SI', path: '/pages/addUFReports' },
+  //     { name: 'List Unfinished Reports', iconText: 'SU', path: '/pages/listUFReports' },
+  //   ]
+  // },
 
 
   {
@@ -83,39 +120,39 @@ export const navigations = [
     ]
   },
 
-  { label: 'PAGES', type: 'label' },
-  {
-    name: 'Session/Auth',
-    icon: 'security',
-    children: [
-      { name: 'Sign in', iconText: 'SI', path: '/session/signin' },
-      { name: 'Sign up', iconText: 'SU', path: '/session/signup' },
-      { name: 'Forgot Password', iconText: 'FP', path: '/session/forgot-password' },
-      { name: 'Error', iconText: '404', path: '/session/404' }
-    ]
-  },
-  { label: 'Components', type: 'label' },
-  {
-    name: 'Components',
-    icon: 'favorite',
-    badge: { value: '30+', color: 'secondary' },
-    children: [
-      { name: 'Auto Complete', path: '/material/autocomplete', iconText: 'A' },
-      { name: 'Buttons', path: '/material/buttons', iconText: 'B' },
-      { name: 'Checkbox', path: '/material/checkbox', iconText: 'C' },
-      { name: 'Dialog', path: '/material/dialog', iconText: 'D' },
-      { name: 'Expansion Panel', path: '/material/expansion-panel', iconText: 'E' },
-      { name: 'Form', path: '/material/form', iconText: 'F' },
-      { name: 'Icons', path: '/material/icons', iconText: 'I' },
-      { name: 'Menu', path: '/material/menu', iconText: 'M' },
-      { name: 'Progress', path: '/material/progress', iconText: 'P' },
-      { name: 'Radio', path: '/material/radio', iconText: 'R' },
-      { name: 'Switch', path: '/material/switch', iconText: 'S' },
-      { name: 'Slider', path: '/material/slider', iconText: 'S' },
-      { name: 'Snackbar', path: '/material/snackbar', iconText: 'S' },
-      { name: 'Table', path: '/material/table', iconText: 'T' }
-    ]
-  },
+  // { label: 'PAGES', type: 'label' },
+  // {
+  //   name: 'Session/Auth',
+  //   icon: 'security',
+  //   children: [
+  //     { name: 'Sign in', iconText: 'SI', path: '/session/signin' },
+  //     { name: 'Sign up', iconText: 'SU', path: '/session/signup' },
+  //     { name: 'Forgot Password', iconText: 'FP', path: '/session/forgot-password' },
+  //     { name: 'Error', iconText: '404', path: '/session/404' }
+  //   ]
+  // },
+  // { label: 'Components', type: 'label' },
+  // {
+  //   name: 'Components',
+  //   icon: 'favorite',
+  //   badge: { value: '30+', color: 'secondary' },
+  //   children: [
+  //     { name: 'Auto Complete', path: '/material/autocomplete', iconText: 'A' },
+  //     { name: 'Buttons', path: '/material/buttons', iconText: 'B' },
+  //     { name: 'Checkbox', path: '/material/checkbox', iconText: 'C' },
+  //     { name: 'Dialog', path: '/material/dialog', iconText: 'D' },
+  //     { name: 'Expansion Panel', path: '/material/expansion-panel', iconText: 'E' },
+  //     { name: 'Form', path: '/material/form', iconText: 'F' },
+  //     { name: 'Icons', path: '/material/icons', iconText: 'I' },
+  //     { name: 'Menu', path: '/material/menu', iconText: 'M' },
+  //     { name: 'Progress', path: '/material/progress', iconText: 'P' },
+  //     { name: 'Radio', path: '/material/radio', iconText: 'R' },
+  //     { name: 'Switch', path: '/material/switch', iconText: 'S' },
+  //     { name: 'Slider', path: '/material/slider', iconText: 'S' },
+  //     { name: 'Snackbar', path: '/material/snackbar', iconText: 'S' },
+  //     { name: 'Table', path: '/material/table', iconText: 'T' }
+  //   ]
+  // },
   // {
   //   name: 'Charts',
   //   icon: 'trending_up',

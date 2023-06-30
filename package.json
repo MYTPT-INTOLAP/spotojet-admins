@@ -24,6 +24,7 @@
     "@emotion/styled": "^11.10.6",
     "@mui/base": "^5.0.0-beta.4",
     "@mui/icons-material": "^5.11.16",
+    "@mui/joy": "^5.0.0-alpha.85",
     "@mui/lab": "^5.0.0-alpha.123",
     "@mui/material": "^5.11.13",
     "@mui/x-date-pickers": "^6.9.0",
@@ -37,6 +38,7 @@
     "echarts-for-react": "^3.0.2",
     "formik": "^2.2.9",
     "lodash": "^4.17.21",
+    "material-ui-color-picker": "^3.5.1",
     "mui-datatables": "^4.3.0",
     "notistack": "^3.0.1",
     "prop-types": "^15.8.1",
@@ -47,6 +49,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.14.0",
     "react-scripts": "^5.0.1",
+    "react-select": "^5.7.3",
     "shortid": "^2.2.16",
     "yup": "^1.0.2"
   },

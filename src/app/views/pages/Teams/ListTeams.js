@@ -5,6 +5,8 @@ import { Breadcrumb, SimpleCard } from 'app/components';
 import MUIDataTable from "mui-datatables";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 
 const Container = styled('div')(({ theme }) => ({
@@ -22,16 +24,40 @@ export default function ListTeams() {
 
   const columns = [
     {
-      name: "name",
-      label: "Name",
+      name: "team",
+      label: "Team",
       options: {
         filter: true,
         sort: true,
       },
     },
     {
-      name: "category",
-      label: "Category",
+      name: "squad",
+      label: "Squad",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "gender",
+      label: "Gender",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
+      name: "players",
+      label: "Players",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
+      name: "coaches",
+      label: "Coaches",
       options: {
         filter: true,
         sort: true,
@@ -50,7 +76,7 @@ export default function ListTeams() {
                 <EditIcon />
               </Button>
               <Button >
-                <DeleteIcon sx={{color: 'red'}} />
+                <DeleteIcon sx={{ color: 'red' }} />
               </Button>
             </Box>
           );
@@ -61,15 +87,28 @@ export default function ListTeams() {
   ];
 
   const data = [
-    { name: "Joe James", category: "Test Corp", date: "06-28-2023" },
-    { name: "John Walsh", category: "Test Corp", date: "06-28-2023"},
-    { name: "Bob Herm", category: "Test Corp", date: "06-28-2023"},
-    { name: "James Houston", category: "Test Corp", date: "06-28-2023"},
-    { name: "Joe James", category: "Test Corp", date: "06-28-2023"},
-    { name: "John Walsh", category: "Test Corp", date: "06-28-2023"},
-    { name: "Bob Herm", category: "Test Corp", date: "06-28-2023" },
-    { name: "James Houston", category: "Test Corp", date: "06-28-2023"},
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
+    { team: "U10", squad: 'Main', gender: 'M', players: '25', coaches: "Koushik Mandal" },
   ];
+
+
+
+
+
+
 
   const options = {
     // filterType: 'checkbox',
@@ -81,10 +120,20 @@ export default function ListTeams() {
     filterType: 'dropdown',
     responsive: 'horizontal',
     rowsPerPage: 10,
-    // print: printBtn,
-    // viewColumns: viewColumnBtn,
-    // filter: filterBtn,
+    customToolbar: () => (
+      <>
+        <Button >
+          <AddIcon sx={{ color: 'gray', mr: 1 }} />
+          <p style={{color: 'gray'}}>Add New Team</p>
+        </Button>
+        <Button>
+          <CloudUploadIcon sx={{ color: 'gray', mr: 1}} />
+          <p style={{color: 'gray'}}>Bulk upload</p>
+        </Button>
+      </>
+    ),
   };
+
 
 
   return (
@@ -93,7 +142,7 @@ export default function ListTeams() {
         <Breadcrumb routeSegments={[{ name: 'Pages', path: '/pages' }, { name: 'List Teams' }]} />
       </Box>
 
-      <Stack spacing={3}>
+      <Stack spacing={3} sx={{mb: 5}}>
         <MUIDataTable
           title={"Teams List"}
           data={data}
@@ -101,6 +150,8 @@ export default function ListTeams() {
           options={options}
         />
       </Stack>
+
+
     </Container>
   )
 }

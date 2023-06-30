@@ -173,12 +173,6 @@ export default function AddPlayer() {
                       control={<Radio color="secondary" />}
                     />
 
-                    <FormControlLabel
-                      value="Others"
-                      label="Others"
-                      labelPlacement="end"
-                      control={<Radio color="secondary" />}
-                    />
                   </RadioGroup>
 
 
@@ -187,12 +181,12 @@ export default function AddPlayer() {
                 <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
 
                   <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
-                    <InputLabel id="demo-simple-select-helper-label">Age Group</InputLabel>
+                    <InputLabel id="demo-simple-select-helper-label">Club</InputLabel>
                     <Select
                       labelId="demo-simple-select-helper-label"
                       id="demo-simple-select-helper"
                       value={age}
-                      label="Age Group"
+                      label="Club"
                       onChange={handleChanges}
                     >
                       <MenuItem value="">
