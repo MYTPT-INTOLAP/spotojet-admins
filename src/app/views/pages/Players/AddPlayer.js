@@ -28,6 +28,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import SaveIcon from '@mui/icons-material/Save';
 
+import { useDispatch, useSelector } from 'react-redux';
+import {AddPlayerData} from '../../../../store/actions/playerAction';
+
 const Container = styled('div')(({ theme }) => ({
   margin: '30px',
   [theme.breakpoints.down('sm')]: { margin: '16px' },
@@ -43,51 +46,44 @@ const TextField = styled(TextValidator)(() => ({
 }));
 
 
-
-
 export default function AddPlayer() {
 
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({ date: new Date() });
+  // const [state, setState] = useState(dataSet);
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
       if (value !== state.password) return false;
-
       return true;
     });
     return () => ValidatorForm.removeValidationRule("isPasswordMatch");
   }, [state.password]);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     // console.log("submitted");
     // console.log(event);
+    // console.log(state)
+    dispatch(AddPlayerData("hi"))
+    console.log(70)
   };
 
   const handleChange = (event) => {
-    event.persist();
+    // event.persist();
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
   const handleDateChange = (date) => setState({ ...state, date });
 
-  const {
-    username,
-    firstName,
-    creditCard,
-    mobile,
-    password,
-    confirmPassword,
-    gender,
-    date,
-    email,
-  } = state;
+  const {name, club, position, DOB, team, location, gender } = state;
 
+  // const [age, setAge] = React.useState('');
 
-  const [age, setAge] = React.useState('');
-
-  const handleChanges = (event) => {
-    setAge(event.target.value);
-  };
+  // const handleChanges = (event) => {
+  //   setAge(event.target.value);
+  // };
 
 
   return (
@@ -106,10 +102,10 @@ export default function AddPlayer() {
                   <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                     <TextField
                       type="text"
-                      name="username"
+                      name="name"
                       id="standard-basic"
                       // sx={{ minWidth: 550, marginBottom: 2 }}
-                      value={username || ""}
+                      value={name || ""}
                       onChange={handleChange}
                       errorMessages={["this field is required"]}
                       label="Name"
@@ -123,16 +119,16 @@ export default function AddPlayer() {
                     <Select
                       labelId="demo-simple-select-helper-label"
                       id="demo-simple-select-helper"
-                      value={age}
+                      value={position}
                       label="Position"
-                      onChange={handleChanges}
+                      onChange={handleChange}
                     >
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      <MenuItem value="Forward">Forward</MenuItem>
+                      <MenuItem value="Defence">Defence</MenuItem>
+                      <MenuItem value="Goalkeep">Goalkeep</MenuItem>
                     </Select>
                   </FormControl>
 
@@ -141,16 +137,16 @@ export default function AddPlayer() {
                     <Select
                       labelId="demo-simple-select-helper-label"
                       id="demo-simple-select-helper"
-                      value={age}
+                      value={team}
                       label="Team"
-                      onChange={handleChanges}
+                      onChange={handleChange}
                     >
-                      <MenuItem value="">
+                      <MenuItem value="team">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      <MenuItem value="Ten">Ten</MenuItem>
+                      <MenuItem value="Twenty">Twenty</MenuItem>
+                      <MenuItem value="Thirty">Thirty</MenuItem>
                     </Select>
                   </FormControl>
 
@@ -191,16 +187,16 @@ export default function AddPlayer() {
                     <Select
                       labelId="demo-simple-select-helper-label"
                       id="demo-simple-select-helper"
-                      value={age}
-                      label="Club"
-                      onChange={handleChanges}
+                      value={club}
+                      label="club"
+                      onChange={handleChange}
                     >
-                      <MenuItem value="">
+                      <MenuItem value={club}>
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      <MenuItem value="FC">FC</MenuItem>
+                      <MenuItem value="RM">RM</MenuItem>
+                      <MenuItem value="GOA">GOA</MenuItem>
                     </Select>
                   </FormControl>
 
@@ -208,6 +204,8 @@ export default function AddPlayer() {
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DatePicker 
                        label="DOB"
+                       value={DOB}
+                       onChange={handleChange}
                       />
                     </LocalizationProvider>
                   </FormControl>
@@ -219,13 +217,11 @@ export default function AddPlayer() {
                       label="Location"
                       // sx={{ minWidth: 550, marginBottom: 2 }}
                       onChange={handleChange}
-                      value={firstName || ""}
+                      value={location || ""}
                       validators={["required"]}
                       errorMessages={["this field is required"]}
                     />
                   </FormControl>
-
-
                 </Grid>
               </Grid>
 
