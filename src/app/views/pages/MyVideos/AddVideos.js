@@ -80,12 +80,12 @@ export default function AddVideos() {
                         <ValidatorForm onError={() => null}>
                             <Grid container spacing={6}>
                                 <Grid item lg={6} md={6} sm={12} xs={12} >
-                                    <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+
+                                    <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                                         <TextField
                                             type="file"
                                             name="venue"
                                             id="standard-basic"
-                                            sx={{ minWidth: 550, marginBottom: 2 }}
                                             value={""}
                                             // onChange={handleChange}
                                             errorMessages={["this field is required"]}
@@ -94,12 +94,11 @@ export default function AddVideos() {
                                         />
                                     </FormControl>
 
-                                    <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+                                    <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                                         <TextField
                                             type="text"
                                             name="Report"
                                             id="standard-basic"
-                                            sx={{ minWidth: 550, marginBottom: 2 }}
                                             // value={""}
                                             // onChange={handleChange}
                                             errorMessages={["this field is required"]}
@@ -111,7 +110,7 @@ export default function AddVideos() {
 
                                 <Grid item lg={6} md={6} sm={12} xs={12}>
 
-                                    <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+                                    <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                                         <Selects
                                             defaultValue={[colourOptions[2], colourOptions[3]]}
                                             isMulti
@@ -130,12 +129,11 @@ export default function AddVideos() {
                                         </LocalizationProvider>
                                     </FormControl> */}
 
-                                    <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+                                    <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                                         <TextField
                                             type="text"
                                             name="Comment"
                                             id="standard-basic"
-                                            sx={{ minWidth: 550, marginBottom: 2 }}
                                             // value={""}
                                             // onChange={handleChange}
                                             errorMessages={["this field is required"]}

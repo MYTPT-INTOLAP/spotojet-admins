@@ -121,58 +121,68 @@ export default function AddTeam() {
             <ValidatorForm onSubmit={handleSubmit} onError={() => null}>
               <Grid container spacing={6}>
                 <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                  <TextField
-                    type="text"
-                    name="team"
-                    id="standard-basic"
-                    value={username || ""}
-                    onChange={handleChange}
-                    errorMessages={["this field is required"]}
-                    label="Team"
-                    validators={["required"]}
-                  />
 
-                  <TextField
-                    type="text"
-                    name="squad"
-                    id="standard-basic"
-                    value={username || ""}
-                    onChange={handleChange}
-                    errorMessages={["this field is required"]}
-                    label="Squad"
-                    validators={["required"]}
-                  />
-
-
-                  <RadioGroup
-                    row
-                    name="gender"
-                    sx={{ mb: 2 }}
-                    value={gender || ""}
-                    onChange={handleChange}
-
-                  >
-                    <FormControlLabel
-                      value="Male"
-                      label="Male"
-                      labelPlacement="end"
-                      control={<Radio color="secondary" />}
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                    <TextField
+                      type="text"
+                      name="team"
+                      id="standard-basic"
+                      value={username || ""}
+                      onChange={handleChange}
+                      errorMessages={["this field is required"]}
+                      label="Team"
+                      validators={["required"]}
                     />
+                  </FormControl>
 
-                    <FormControlLabel
-                      value="Female"
-                      label="Female"
-                      labelPlacement="end"
-                      control={<Radio color="secondary" />}
+
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                    <TextField
+                      type="text"
+                      name="squad"
+                      id="standard-basic"
+                      value={username || ""}
+                      onChange={handleChange}
+                      errorMessages={["this field is required"]}
+                      label="Squad"
+                      validators={["required"]}
                     />
+                  </FormControl>
 
-                  </RadioGroup>
+
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                    <RadioGroup
+                      row
+                      name="gender"
+                      sx={{ mb: 2 }}
+                      value={gender || ""}
+                      onChange={handleChange}
+
+                    >
+                      <FormControlLabel
+                        value="Male"
+                        label="Male"
+                        labelPlacement="end"
+                        control={<Radio color="secondary" />}
+                      />
+
+                      <FormControlLabel
+                        value="Female"
+                        label="Female"
+                        labelPlacement="end"
+                        control={<Radio color="secondary" />}
+                      />
+
+                    </RadioGroup>
+                  </FormControl>
+
 
 
                 </Grid>
 
                 <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                  <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                     <Selects
                       defaultValue={[colourOptions[2], colourOptions[3]]}
                       isMulti
@@ -185,16 +195,18 @@ export default function AddTeam() {
                     />
                   </FormControl>
 
-                  <TextField
-                    type="text"
-                    name="location"
-                    label="Location"
-                    sx={{ minWidth: 550, marginBottom: 2 }}
-                    onChange={handleChange}
-                    value={firstName || ""}
-                    validators={["required"]}
-                    errorMessages={["this field is required"]}
-                  />
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                    <TextField
+                      type="text"
+                      name="location"
+                      label="Location"
+                      onChange={handleChange}
+                      value={firstName || ""}
+                      validators={["required"]}
+                      errorMessages={["this field is required"]}
+                    />
+                  </FormControl>
+
 
                 </Grid>
               </Grid>

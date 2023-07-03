@@ -102,18 +102,22 @@ export default function AddCoach() {
                         <ValidatorForm onSubmit={handleSubmit} onError={() => null}>
                             <Grid container spacing={6}>
                                 <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                                    <TextField
-                                        type="text"
-                                        name="username"
-                                        id="standard-basic"
-                                        value={username || ""}
-                                        onChange={handleChange}
-                                        errorMessages={["this field is required"]}
-                                        label="Name"
-                                        validators={["required"]}
-                                    />
 
-                                    <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+                                    <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                                        <TextField
+                                            type="text"
+                                            name="username"
+                                            id="standard-basic"
+                                            value={username || ""}
+                                            onChange={handleChange}
+                                            errorMessages={["this field is required"]}
+                                            label="Name"
+                                            validators={["required"]}
+                                        />
+                                    </FormControl>
+
+
+                                    <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                                         <InputLabel id="demo-simple-select-helper-label">Team</InputLabel>
                                         <Select
                                             labelId="demo-simple-select-helper-label"
@@ -131,57 +135,66 @@ export default function AddCoach() {
                                         </Select>
                                     </FormControl>
 
-                                    <RadioGroup
-                                        row
-                                        name="gender"
-                                        sx={{ mb: 2 }}
-                                        value={gender || ""}
-                                        onChange={handleChange}
-                                    >
-                                        <FormControlLabel
-                                            value="Male"
-                                            label="Male"
-                                            labelPlacement="end"
-                                            control={<Radio color="secondary" />}
-                                        />
+                                    <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                                        <RadioGroup
+                                            row
+                                            name="gender"
+                                            sx={{ mb: 2 }}
+                                            value={gender || ""}
+                                            onChange={handleChange}
+                                        >
+                                            <FormControlLabel
+                                                value="Male"
+                                                label="Male"
+                                                labelPlacement="end"
+                                                control={<Radio color="secondary" />}
+                                            />
 
-                                        <FormControlLabel
-                                            value="Female"
-                                            label="Female"
-                                            labelPlacement="end"
-                                            control={<Radio color="secondary" />}
-                                        />
+                                            <FormControlLabel
+                                                value="Female"
+                                                label="Female"
+                                                labelPlacement="end"
+                                                control={<Radio color="secondary" />}
+                                            />
 
-                                        <FormControlLabel
-                                            value="Others"
-                                            label="Others"
-                                            labelPlacement="end"
-                                            control={<Radio color="secondary" />}
-                                        />
-                                    </RadioGroup>
+                                            <FormControlLabel
+                                                value="Others"
+                                                label="Others"
+                                                labelPlacement="end"
+                                                control={<Radio color="secondary" />}
+                                            />
+                                        </RadioGroup>
+                                    </FormControl>
+
 
                                 </Grid>
 
                                 <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                                    <TextField
-                                        type="text"
-                                        name="mobile"
-                                        value={mobile || ""}
-                                        label="Mobile Nubmer"
-                                        onChange={handleChange}
-                                        validators={["required"]}
-                                        errorMessages={["this field is required"]}
-                                    />
 
-                                    <TextField
-                                        type="email"
-                                        name="email"
-                                        label="Email"
-                                        value={email || ""}
-                                        onChange={handleChange}
-                                        validators={["required", "isEmail"]}
-                                        errorMessages={["this field is required", "email is not valid"]}
-                                    />
+                                    <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                                        <TextField
+                                            type="text"
+                                            name="mobile"
+                                            value={mobile || ""}
+                                            label="Mobile Nubmer"
+                                            onChange={handleChange}
+                                            validators={["required"]}
+                                            errorMessages={["this field is required"]}
+                                        />
+                                    </FormControl>
+
+                                    <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                                        <TextField
+                                            type="email"
+                                            name="email"
+                                            label="Email"
+                                            value={email || ""}
+                                            onChange={handleChange}
+                                            validators={["required", "isEmail"]}
+                                            errorMessages={["this field is required", "email is not valid"]}
+                                        />
+                                    </FormControl>
+
 
                                 </Grid>
                             </Grid>

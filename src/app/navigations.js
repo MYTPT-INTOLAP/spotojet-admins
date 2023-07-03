@@ -74,33 +74,22 @@ export const navigations = [
   //     { name: 'List Categories', iconText: 'SU', path: '/pages/listCategories' },
   //   ]
   // },
+    {
+    name: 'Reports',
+    icon: 'check_box',
+    children: [
+      { name: 'Add Reports', iconText: 'SI', path: '/pages/addFReports' },
+      { name: 'Finished Reports', iconText: 'SU', path: '/pages/listFReports' },
+      { name: 'Unfinished Reports', iconText: 'SU', path: '/pages/listUFReports' },
+    ]
+  },
 
-  { name: 'Finished Reports', path: '/pages/listFReports', icon: 'check_box' },
+  // { name: 'Finished Reports', path: '/pages/listFReports', icon: 'check_box' },
 
-  { name: 'Unfinished Reports', path: '/pages/listUFReports', icon: 'check_box_outline_blank' },
+  // { name: 'Unfinished Reports', path: '/pages/listUFReports', icon: 'check_box_outline_blank' },
 
 
   { name: 'Compare Players', path: '/pages/comparePlayers', icon: 'check_box_outline_blank' },
-
-  // {
-  //   name: 'Finished Reports',
-  //   icon: 'check_box',
-  //   children: [
-  //     // { name: 'Add Finished Reports', iconText: 'SI', path: '/pages/addFReports' },
-  //     { name: 'List Finished Reports', iconText: 'SU', path: '/pages/listFReports' },
-  //   ]
-  // },
-
-  // {
-  //   name: 'Unfinished Reports',
-  //   icon: 'check_box_outline_blank',
-  //   children: [
-  //     // { name: 'Add Unfinished Reports', iconText: 'SI', path: '/pages/addUFReports' },
-  //     { name: 'List Unfinished Reports', iconText: 'SU', path: '/pages/listUFReports' },
-  //   ]
-  // },
-
-
   {
     name: 'Matches Planning',
     icon: 'favorite',

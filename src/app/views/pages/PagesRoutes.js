@@ -1,7 +1,6 @@
 import { lazy } from 'react';
 import Loadable from 'app/components/Loadable';
 
-// 
 // const AppTable = Loadable(lazy(() => import('./tables/AppTable')));
 const AddPlayer = Loadable(lazy(() => import('./Players/AddPlayer')));
 const ListPlayer = Loadable(lazy(() => import('./Players/ListPlayer')));

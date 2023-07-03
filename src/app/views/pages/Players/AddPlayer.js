@@ -102,19 +102,23 @@ export default function AddPlayer() {
             <ValidatorForm onSubmit={handleSubmit} onError={() => null}>
               <Grid container spacing={6}>
                 <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                  <TextField
-                    type="text"
-                    name="username"
-                    id="standard-basic"
-                    sx={{ minWidth: 550, marginBottom: 2 }}
-                    value={username || ""}
-                    onChange={handleChange}
-                    errorMessages={["this field is required"]}
-                    label="Name"
-                    validators={["required"]}
-                  />
 
-                  <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                    <TextField
+                      type="text"
+                      name="username"
+                      id="standard-basic"
+                      // sx={{ minWidth: 550, marginBottom: 2 }}
+                      value={username || ""}
+                      onChange={handleChange}
+                      errorMessages={["this field is required"]}
+                      label="Name"
+                      validators={["required"]}
+                    />
+                  </FormControl>
+
+
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                     <InputLabel id="demo-simple-select-helper-label">Position</InputLabel>
                     <Select
                       labelId="demo-simple-select-helper-label"
@@ -132,7 +136,7 @@ export default function AddPlayer() {
                     </Select>
                   </FormControl>
 
-                  <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                     <InputLabel id="demo-simple-select-helper-label">Team</InputLabel>
                     <Select
                       labelId="demo-simple-select-helper-label"
@@ -150,37 +154,39 @@ export default function AddPlayer() {
                     </Select>
                   </FormControl>
 
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                    <RadioGroup
+                      row
+                      name="gender"
+                      sx={{ mb: 2 }}
+                      value={gender || ""}
+                      onChange={handleChange}
 
-                  <RadioGroup
-                    row
-                    name="gender"
-                    sx={{ mb: 2 }}
-                    value={gender || ""}
-                    onChange={handleChange}
-                    
-                  >
-                    <FormControlLabel
-                      value="Male"
-                      label="Male"
-                      labelPlacement="end"
-                      control={<Radio color="secondary" />}
-                    />
+                    >
+                      <FormControlLabel
+                        value="Male"
+                        label="Male"
+                        labelPlacement="end"
+                        control={<Radio color="secondary" />}
+                      />
 
-                    <FormControlLabel
-                      value="Female"
-                      label="Female"
-                      labelPlacement="end"
-                      control={<Radio color="secondary" />}
-                    />
+                      <FormControlLabel
+                        value="Female"
+                        label="Female"
+                        labelPlacement="end"
+                        control={<Radio color="secondary" />}
+                      />
 
-                  </RadioGroup>
+                    </RadioGroup>
+                  </FormControl>
+
 
 
                 </Grid>
 
                 <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
 
-                  <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                     <InputLabel id="demo-simple-select-helper-label">Club</InputLabel>
                     <Select
                       labelId="demo-simple-select-helper-label"
@@ -197,28 +203,34 @@ export default function AddPlayer() {
                       <MenuItem value={30}>Thirty</MenuItem>
                     </Select>
                   </FormControl>
-                  <FormControl sx={{ minWidth: 550, marginBottom: 2 }}>
+
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DatePicker />
+                      <DatePicker 
+                       label="DOB"
+                      />
                     </LocalizationProvider>
                   </FormControl>
 
-                  <TextField
-                    type="text"
-                    name="location"
-                    label="Location"
-                    sx={{ minWidth: 550, marginBottom: 2 }}
-                    onChange={handleChange}
-                    value={firstName || ""}
-                    validators={["required"]}
-                    errorMessages={["this field is required"]}
-                  />
+                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                    <TextField
+                      type="text"
+                      name="location"
+                      label="Location"
+                      // sx={{ minWidth: 550, marginBottom: 2 }}
+                      onChange={handleChange}
+                      value={firstName || ""}
+                      validators={["required"]}
+                      errorMessages={["this field is required"]}
+                    />
+                  </FormControl>
+
 
                 </Grid>
               </Grid>
 
               <Button color="primary" variant="contained" type="submit">
-                <SaveIcon/>
+                <SaveIcon />
                 <Span sx={{ pl: 1, textTransform: "capitalize" }}>Save</Span>
               </Button>
             </ValidatorForm>
