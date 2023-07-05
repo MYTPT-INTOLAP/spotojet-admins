@@ -29,7 +29,13 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import SaveIcon from '@mui/icons-material/Save';
 import makeAnimated from 'react-select/animated';
 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  AddPlayerData
+} from "../../../../store/actions/teamAction";
+
 import Selects from 'react-select';
+import axios from 'axios';
 
 const Container = styled('div')(({ theme }) => ({
   margin: '30px',
@@ -52,20 +58,26 @@ const animatedComponents = makeAnimated();
 
 export default function AddTeam() {
 
+  const dispatch = useDispatch();
+  const store = useSelector((state) => state);
+
   const [state, setState] = useState({ date: new Date() });
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
       if (value !== state.password) return false;
-
       return true;
     });
+    
     return () => ValidatorForm.removeValidationRule("isPasswordMatch");
   }, [state.password]);
 
   const handleSubmit = (event) => {
     // console.log("submitted");
     // console.log(event);
+    const adminId = "64a2b592ce098e9113c9e1e4" 
+    console.log(state)
+    dispatch(AddPlayerData({state, adminId: adminId}))
   };
 
   const handleChange = (event) => {
@@ -76,15 +88,11 @@ export default function AddTeam() {
   const handleDateChange = (date) => setState({ ...state, date });
 
   const {
-    username,
-    firstName,
-    creditCard,
-    mobile,
-    password,
-    confirmPassword,
+    team,
+    squad,
     gender,
-    date,
-    email,
+    // coach: null,
+    location,
   } = state;
 
 
@@ -127,7 +135,7 @@ export default function AddTeam() {
                       type="text"
                       name="team"
                       id="standard-basic"
-                      value={username || ""}
+                      value={team || ""}
                       onChange={handleChange}
                       errorMessages={["this field is required"]}
                       label="Team"
@@ -141,7 +149,7 @@ export default function AddTeam() {
                       type="text"
                       name="squad"
                       id="standard-basic"
-                      value={username || ""}
+                      value={squad || ""}
                       onChange={handleChange}
                       errorMessages={["this field is required"]}
                       label="Squad"
@@ -188,10 +196,12 @@ export default function AddTeam() {
                       isMulti
                       components={animatedComponents}
                       name="colors"
+                      // value={coach||""}
                       placeholder="Select Coaches..."
                       options={colourOptions}
                       className="basic-multi-select"
                       classNamePrefix="select"
+                      // onChange={handleChange}
                     />
                   </FormControl>
 
@@ -201,7 +211,7 @@ export default function AddTeam() {
                       name="location"
                       label="Location"
                       onChange={handleChange}
-                      value={firstName || ""}
+                      value={location || ""}
                       validators={["required"]}
                       errorMessages={["this field is required"]}
                     />

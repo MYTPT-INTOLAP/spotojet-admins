@@ -9,6 +9,9 @@ import TopSellingTable from './shared/TopSellingTable';
 import UpgradeCard from './shared/UpgradeCard';
 import StatCardsRight from './shared/StatCardsRight';
 
+import { useDispatch, useSelector } from "react-redux";
+
+
 const ContentBox = styled('div')(({ theme }) => ({
   margin: '30px',
   [theme.breakpoints.down('sm')]: { margin: '16px' },
@@ -36,6 +39,9 @@ const H4 = styled('h4')(({ theme }) => ({
 
 const Analytics = () => {
   const { palette } = useTheme();
+  const dispatch = useDispatch();
+  const store = useSelector((state) => state);
+
 
   return (
     <Fragment>
@@ -60,7 +66,7 @@ const Analytics = () => {
                 color={[palette.primary.dark, palette.primary.main, palette.primary.light]}
               />
             </Card> */}
-            <StatCardsRight/>
+            <StatCardsRight />
 
             {/* <UpgradeCard /> */}
             {/* <Campaigns /> */}

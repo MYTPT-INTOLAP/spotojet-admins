@@ -1,6 +1,6 @@
-import React from 'react'
-import { Stack } from '@mui/material';
-import { Breadcrumb, SimpleCard } from 'app/components';
+import React from "react";
+import { Stack } from "@mui/material";
+import { Breadcrumb, SimpleCard } from "app/components";
 // import { DatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 // import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -13,31 +13,36 @@ import {
   Radio,
   RadioGroup,
   styled,
-  Box
+  Box,
 } from "@mui/material";
 import { Span } from "app/components/Typography";
 import { useEffect, useState } from "react";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import SaveIcon from '@mui/icons-material/Save';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import SaveIcon from "@mui/icons-material/Save";
 
-import { useDispatch, useSelector } from 'react-redux';
-import {AddPlayerData} from '../../../../store/actions/playerAction';
+import { useDispatch, useSelector } from "react-redux";
+import { AddPlayerData, UpdatePlayer } from "../../../../store/actions/playerAction";
+import { update } from "lodash";
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
-const Container = styled('div')(({ theme }) => ({
-  margin: '30px',
-  [theme.breakpoints.down('sm')]: { margin: '16px' },
-  '& .breadcrumb': {
-    marginBottom: '30px',
-    [theme.breakpoints.down('sm')]: { marginBottom: '16px' }
-  }
+
+
+const Container = styled("div")(({ theme }) => ({
+  margin: "30px",
+  [theme.breakpoints.down("sm")]: { margin: "16px" },
+  "& .breadcrumb": {
+    marginBottom: "30px",
+    [theme.breakpoints.down("sm")]: { marginBottom: "16px" },
+  },
 }));
 
 const TextField = styled(TextValidator)(() => ({
@@ -45,13 +50,35 @@ const TextField = styled(TextValidator)(() => ({
   marginBottom: "16px",
 }));
 
-
 export default function AddPlayer() {
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const store = useSelector((state) => state);
+  console.log(store.Players.data)
+
+  let playerData;
+  if (localStorage.getItem("playerId")) {
+    console.log("hi")
+    playerData = localStorage.getItem("player")
+    playerData = JSON.parse(playerData)
+    console.log(playerData)
+  }
+
+  let player = {
+    name: playerData && playerData.name ? playerData.name : "",
+    club: playerData && playerData.club ? playerData.club : "",
+    position: playerData && playerData.position ? playerData.position : "",
+    DOB: playerData && playerData.DOB ? playerData.DOB : "",
+    team: playerData && playerData.team ? playerData.team : "",
+    location: playerData && playerData.location ? playerData.location : "",
+    gender: playerData && playerData.gender ? playerData.gender : "",
+  };
+
+  const [pState, setPstate] = useState(player)
+  console.log(79, pState)
 
   const [state, setState] = useState({ date: new Date() });
-  // const [state, setState] = useState(dataSet);
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
@@ -65,47 +92,106 @@ export default function AddPlayer() {
     event.preventDefault();
     // console.log("submitted");
     // console.log(event);
-    // console.log(state)
-    dispatch(AddPlayerData("hi"))
-    console.log(70)
+    console.log(state);
+    const adminId = "64a2b592ce098e9113c9e1e4";
+    const playerId = localStorage.getItem("playerId");
+    console.log(playerId);
+    if (!playerId) {
+      dispatch(AddPlayerData(state));
+    } else {
+      console.log("state: ", state)
+      const data = {
+        ...state,
+        date: undefined,
+      }
+      dispatch(UpdatePlayer({ ...data, playerId, adminId }));
+      // localStorage.clear();
+      // navigate("/pages/listPlayers")
+    }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("playerId") && store.Players.successMessage) {
+      Swal.fire({
+        title: store.Players.successMessage || "fdfygyfgdgf",
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      },2000).then(() => {
+        localStorage.removeItem("playerId"); //{remove item}
+        localStorage.removeItem("player"); //{remove item}
+        navigate("/pages/listPlayers")
+      }) 
+    }
+
+    if (!localStorage.getItem("playerId") && store.Players.successMessage) {
+      Swal.fire({
+        title: store.Players.successMessage,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      },2000).then(()=>{
+      navigate("/pages/listPlayers")
+      })
+    }
+  }, [store]);
 
   const handleChange = (event) => {
     // event.persist();
+    event.preventDefault();
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
   const handleDateChange = (date) => setState({ ...state, date });
 
-  const {name, club, position, DOB, team, location, gender } = state;
+  let {
+    name,
+    club,
+    position,
+    DOB = "1.01.2022",
+    team,
+    location,
+    gender,
+  } = state;
 
   // const [age, setAge] = React.useState('');
 
   // const handleChanges = (event) => {
   //   setAge(event.target.value);
   // };
-
+  let pageTitle = localStorage.getItem("playerId") ? "Edit Player" : "Add Player"
+  let btnName = localStorage.getItem("playerId") ? "Edit" : "Save"
 
   return (
     <Container>
       <Box className="breadcrumb">
-        <Breadcrumb routeSegments={[{ name: 'Pages', path: '/pages' }, { name: 'Add Player' }]} />
+        <Breadcrumb
+          routeSegments={[
+            { name: "Pages", path: "/pages" },
+            { name: pageTitle },
+          ]}
+        />
       </Box>
 
       <Stack spacing={3}>
-        <SimpleCard title="Add Player">
+        <SimpleCard title={pageTitle}>
           <div>
             <ValidatorForm onSubmit={handleSubmit} onError={() => null}>
               <Grid container spacing={6}>
                 <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-
-                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                  <FormControl sx={{ minWidth: "90%", marginBottom: 2 }}>
                     <TextField
                       type="text"
                       name="name"
                       id="standard-basic"
                       // sx={{ minWidth: 550, marginBottom: 2 }}
-                      value={name || ""}
+                      value={name || pState.name}
                       onChange={handleChange}
                       errorMessages={["this field is required"]}
                       label="Name"
@@ -113,13 +199,15 @@ export default function AddPlayer() {
                     />
                   </FormControl>
 
-
-                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
-                    <InputLabel id="demo-simple-select-helper-label">Position</InputLabel>
+                  <FormControl sx={{ minWidth: "90%", marginBottom: 2 }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Position
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-helper-label"
                       id="demo-simple-select-helper"
-                      value={position}
+                      value={position || pState.position}
+                      name="position"
                       label="Position"
                       onChange={handleChange}
                     >
@@ -132,32 +220,34 @@ export default function AddPlayer() {
                     </Select>
                   </FormControl>
 
-                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
-                    <InputLabel id="demo-simple-select-helper-label">Team</InputLabel>
+                  <FormControl sx={{ minWidth: "90%", marginBottom: 2 }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Team
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-helper-label"
                       id="demo-simple-select-helper"
-                      value={team}
+                      value={team || pState.team}
+                      name="team"
                       label="Team"
                       onChange={handleChange}
                     >
                       <MenuItem value="team">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value="Ten">Ten</MenuItem>
-                      <MenuItem value="Twenty">Twenty</MenuItem>
-                      <MenuItem value="Thirty">Thirty</MenuItem>
+                      <MenuItem value="U-16">U-16</MenuItem>
+                      <MenuItem value="U-19">U-19</MenuItem>
+                      <MenuItem value="Club">Club</MenuItem>
                     </Select>
                   </FormControl>
 
-                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                  <FormControl sx={{ minWidth: "90%", marginBottom: 2 }}>
                     <RadioGroup
                       row
                       name="gender"
                       sx={{ mb: 2 }}
-                      value={gender || ""}
+                      value={gender || pState.gender}
                       onChange={handleChange}
-
                     >
                       <FormControlLabel
                         value="Male"
@@ -165,33 +255,30 @@ export default function AddPlayer() {
                         labelPlacement="end"
                         control={<Radio color="secondary" />}
                       />
-
                       <FormControlLabel
                         value="Female"
                         label="Female"
                         labelPlacement="end"
                         control={<Radio color="secondary" />}
                       />
-
                     </RadioGroup>
                   </FormControl>
-
-
-
                 </Grid>
 
                 <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-
-                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
-                    <InputLabel id="demo-simple-select-helper-label">Club</InputLabel>
+                  <FormControl sx={{ minWidth: "90%", marginBottom: 2 }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Club
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-helper-label"
                       id="demo-simple-select-helper"
-                      value={club}
+                      value={club || pState.club}
+                      name="club"
                       label="club"
                       onChange={handleChange}
                     >
-                      <MenuItem value={club}>
+                      <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
                       <MenuItem value="FC">FC</MenuItem>
@@ -200,25 +287,26 @@ export default function AddPlayer() {
                     </Select>
                   </FormControl>
 
-                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                  {/* <FormControl sx={{ minWidth: "90%", marginBottom: 2 }}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DatePicker 
-                       label="DOB"
-                       value={DOB}
-                       onChange={handleChange}
+                      <DatePicker
+                        label="DOB"
+                        name="DOB"
+                        value= {DOB}
+                        onChange={handleChange}
                       />
                     </LocalizationProvider>
-                  </FormControl>
+                  </FormControl> */}
 
-                  <FormControl sx={{ minWidth: '90%', marginBottom: 2 }}>
+                  <FormControl sx={{ minWidth: "90%", marginBottom: 2 }}>
                     <TextField
                       type="text"
                       name="location"
                       label="Location"
                       // sx={{ minWidth: 550, marginBottom: 2 }}
                       onChange={handleChange}
-                      value={location || ""}
-                      validators={["required"]}
+                      value={location || pState.location}
+                      // validators={["required"]}
                       errorMessages={["this field is required"]}
                     />
                   </FormControl>
@@ -227,12 +315,12 @@ export default function AddPlayer() {
 
               <Button color="primary" variant="contained" type="submit">
                 <SaveIcon />
-                <Span sx={{ pl: 1, textTransform: "capitalize" }}>Save</Span>
+                <Span sx={{ pl: 1, textTransform: "capitalize" }}>{btnName}</Span>
               </Button>
             </ValidatorForm>
           </div>
         </SimpleCard>
       </Stack>
     </Container>
-  )
+  );
 }
