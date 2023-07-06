@@ -31,7 +31,7 @@ import makeAnimated from 'react-select/animated';
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  AddPlayerData
+  AddTeamData
 } from "../../../../store/actions/teamAction";
 
 import Selects from 'react-select';
@@ -77,7 +77,7 @@ export default function AddTeam() {
     // console.log(event);
     const adminId = "64a2b592ce098e9113c9e1e4" 
     console.log(state)
-    dispatch(AddPlayerData({state, adminId: adminId}))
+    dispatch(AddTeamData({...state, adminId: adminId}))
   };
 
   const handleChange = (event) => {
