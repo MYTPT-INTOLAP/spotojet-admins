@@ -211,7 +211,7 @@ export default function ListPlayer() {
   // }, []);
   // console.log(store);
 
-  const data = store.Players.data;
+  const data = store?.Players?.data ;
   console.log(store.Players);
 
   const handleEdit = (x) => {
@@ -229,9 +229,10 @@ export default function ListPlayer() {
 
   const handleDelete = (x) => {
 
-    const adminId = "64a2b592ce098e9113c9e1e4";
+    const adminId = "64a7f852277cdd655b84098b";
     const player = data[x.rowIndex];
     const playerId = player._id;
+    console.log(playerId);
 
     Swal.fire({
       title: 'You are going To delete the Team.Are you sure?',
@@ -257,10 +258,7 @@ export default function ListPlayer() {
   useEffect(() => {
     console.log(store.Players.successMessage)
     if (store.Players.successMessage) {
-      /*window alert*/
-      // window.alert(store.Players.successMessage)
       window.location.reload()
-      // navigate("/pages/listPlayers")
     }
   }, [store])
 
@@ -553,7 +551,7 @@ export default function ListPlayer() {
         {/* <SimpleCard title="Player List"> */}
         <MUIDataTable
           title={"Player List"}
-          data={data}
+          data={data ||[]}
           columns={columns}
           options={options}
         />

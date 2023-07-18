@@ -57,6 +57,14 @@ export default function AddPlayer() {
   const store = useSelector((state) => state);
   console.log(store.Players.data)
 
+ 
+
+  useEffect(() => {
+    localStorage.removeItem('playerId');
+    localStorage.removeItem('player');
+  }, [])
+
+
   let playerData;
   if (localStorage.getItem("playerId")) {
     console.log("hi")
@@ -76,10 +84,11 @@ export default function AddPlayer() {
   };
 
   const [pState, setPstate] = useState(player)
-  console.log(79, pState)
+  // console.log(79, pState)
 
   const [state, setState] = useState({ date: new Date() });
 
+ 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
       if (value !== state.password) return false;
@@ -93,7 +102,7 @@ export default function AddPlayer() {
     // console.log("submitted");
     // console.log(event);
     console.log(state);
-    const adminId = "64a2b592ce098e9113c9e1e4";
+    const adminId = "64a7f852277cdd655b84098b";
     const playerId = localStorage.getItem("playerId");
     console.log(playerId);
     if (!playerId) {
@@ -105,7 +114,6 @@ export default function AddPlayer() {
         date: undefined,
       }
       dispatch(UpdatePlayer({ ...data, playerId, adminId }));
-      // localStorage.clear();
       // navigate("/pages/listPlayers")
     }
   };
@@ -113,7 +121,7 @@ export default function AddPlayer() {
   useEffect(() => {
     if (localStorage.getItem("playerId") && store.Players.successMessage) {
       Swal.fire({
-        title: store.Players.successMessage || "fdfygyfgdgf",
+        title: store.Players.successMessage ,
         showClass: {
           popup: 'animate__animated animate__fadeInDown'
         },
@@ -166,7 +174,7 @@ export default function AddPlayer() {
   //   setAge(event.target.value);
   // };
   let pageTitle = localStorage.getItem("playerId") ? "Edit Player" : "Add Player"
-  let btnName = localStorage.getItem("playerId") ? "Edit" : "Save"
+  let btnName = localStorage.getItem("playerId") ? "Save Edit" : "Save"
 
   return (
     <Container>

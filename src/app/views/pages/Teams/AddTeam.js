@@ -31,11 +31,15 @@ import makeAnimated from 'react-select/animated';
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  AddTeamData
+  AddTeamData,
+  UpdateTeam
 } from "../../../../store/actions/teamAction";
 
 import Selects from 'react-select';
 import axios from 'axios';
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
+
 
 const Container = styled('div')(({ theme }) => ({
   margin: '30px',
@@ -57,9 +61,34 @@ const animatedComponents = makeAnimated();
 
 
 export default function AddTeam() {
-
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const store = useSelector((state) => state);
+
+  useEffect(() => {
+    localStorage.removeItem('teamId');
+    localStorage.removeItem('team');
+  }, [])
+
+  let teamData;
+  if (localStorage.getItem("teamId")) {
+    console.log("hi")
+    teamData = localStorage.getItem("team")
+    teamData = JSON.parse(teamData)
+    console.log(teamData)
+  }
+
+  let prefillTeam = {
+    team: teamData && teamData.team ? teamData.team : "",
+    squad: teamData && teamData.squad ? teamData.squad : "",
+    gender: teamData && teamData.gender ? teamData.gender : "",
+    coach: teamData && teamData.coach ? teamData.coach : "",
+    team: teamData && teamData.team ? teamData.team : "",
+    location: teamData && teamData.location ? teamData.location : "",
+  };
+
+  const [pState, setPstate] = useState( prefillTeam)
+  console.log(87, pState)
 
   const [state, setState] = useState({ date: new Date() });
 
@@ -68,17 +97,63 @@ export default function AddTeam() {
       if (value !== state.password) return false;
       return true;
     });
-    
+
     return () => ValidatorForm.removeValidationRule("isPasswordMatch");
   }, [state.password]);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     // console.log("submitted");
     // console.log(event);
-    const adminId = "64a2b592ce098e9113c9e1e4" 
+    const adminId = "64a7f852277cdd655b84098b"
     console.log(state)
-    dispatch(AddTeamData({...state, adminId: adminId}))
+    const teamId = localStorage.getItem("teamId");
+    console.log(teamId);
+    if (!teamId) {
+      dispatch(AddTeamData({ ...state, adminId: adminId }))
+    } else {
+      console.log("state: ", state)
+      const data = {
+        ...state,
+        date: undefined,
+      }
+      console.log(data);
+      dispatch(UpdateTeam({ ...data, teamId, adminId }));
+    }
   };
+
+  useEffect(() => {
+    console.log(store)
+    if (localStorage.getItem("teamId") && store.Teams.successMessage) {
+      Swal.fire({
+        title: store.Teams.successMessage ,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      }, 2000).then(() => {
+        localStorage.removeItem("teamId"); //{remove item}
+        localStorage.removeItem("team"); //{remove item}
+        navigate("/pages/listTeams")
+      })
+    }
+
+    if (!localStorage.getItem("teamId") && store.Teams.successMessage) {
+      Swal.fire({
+        title: store.Teams.successMessage,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      }, 2000).then(() => {
+        navigate("/pages/listTeams")
+      })
+    }
+  }, [store]);
 
   const handleChange = (event) => {
     event.persist();
@@ -116,15 +191,17 @@ export default function AddTeam() {
     { value: 'silver', label: 'Silver', color: '#666666' },
   ]
 
+  let pageTitle = localStorage.getItem("teamId") ? "Edit Team" : "Add Team"
+  let btnName = localStorage.getItem("teamId") ? "Save Edit" : "Save"
 
   return (
     <Container>
       <Box className="breadcrumb">
-        <Breadcrumb routeSegments={[{ name: 'Pages', path: '/pages' }, { name: 'Add Teams' }]} />
+        <Breadcrumb routeSegments={[{ name: 'Pages', path: '/pages' }, { name: pageTitle }]} />
       </Box>
 
       <Stack spacing={3}>
-        <SimpleCard title="Add Team">
+        <SimpleCard title= {pageTitle}>
           <div>
             <ValidatorForm onSubmit={handleSubmit} onError={() => null}>
               <Grid container spacing={6}>
@@ -135,7 +212,7 @@ export default function AddTeam() {
                       type="text"
                       name="team"
                       id="standard-basic"
-                      value={team || ""}
+                      value={team || pState.team}
                       onChange={handleChange}
                       errorMessages={["this field is required"]}
                       label="Team"
@@ -149,7 +226,7 @@ export default function AddTeam() {
                       type="text"
                       name="squad"
                       id="standard-basic"
-                      value={squad || ""}
+                      value={squad || pState.squad}
                       onChange={handleChange}
                       errorMessages={["this field is required"]}
                       label="Squad"
@@ -163,7 +240,7 @@ export default function AddTeam() {
                       row
                       name="gender"
                       sx={{ mb: 2 }}
-                      value={gender || ""}
+                      value={gender || pState.gender}
                       onChange={handleChange}
 
                     >
@@ -201,7 +278,7 @@ export default function AddTeam() {
                       options={colourOptions}
                       className="basic-multi-select"
                       classNamePrefix="select"
-                      // onChange={handleChange}
+                    // onChange={handleChange}
                     />
                   </FormControl>
 
@@ -211,7 +288,7 @@ export default function AddTeam() {
                       name="location"
                       label="Location"
                       onChange={handleChange}
-                      value={location || ""}
+                      value={location || pState.location}
                       validators={["required"]}
                       errorMessages={["this field is required"]}
                     />
@@ -223,7 +300,7 @@ export default function AddTeam() {
 
               <Button color="primary" variant="contained" type="submit">
                 <SaveIcon />
-                <Span sx={{ pl: 1, textTransform: "capitalize" }}>Save</Span>
+                <Span sx={{ pl: 1, textTransform: "capitalize" }}>{btnName}</Span>
               </Button>
             </ValidatorForm>
           </div>

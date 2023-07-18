@@ -1,14 +1,15 @@
-import {
-    TEAM_ADD_SUCESS,
-    TEAM_ADD_FAIL,
-    TEAM_GET_SUCESS,
-    TEAM_GET_FAIL,
-    TEAM_DELETE_SUCESS,
-    TEAM_DELETE_FAIL,
-    TEAM_UPDATE_SUCESS,
-    TEAM_UPDATE_FAIL
-} from "../types/teamTypes";
 import axios from "axios";
+
+import {
+    POSITION_ADD_SUCESS,
+    POSITION_ADD_FAIL,
+    POSITION_GET_SUCESS,
+    POSITION_GET_FAIL,
+    POSITION_DELETE_SUCESS,
+    POSITION_DELETE_FAIL,
+    POSITION_UPDATE_SUCESS,
+    POSITION_UPDATE_FAIL
+} from "../types/positionTypes";
 
 import { SERVER_URI } from '../../config/dev';
 
@@ -29,27 +30,18 @@ export const userAuth = (token) => {
     );
 };
 
-export const AddTeamData = (data) => {
-    // console.log("action", data);
-
-    // const sData = data.state;
-    // const adminId = data.adminId;
-
-    // console.log("state", sData);
-    // console.log("adminId", adminId);
-
-    // console.log("state", data);
-
-
+export const AddPosition = (data) => {
+    console.log("action", data);
     return async (dispatch) => {
         try {
-            userAuth(token);
-
             const response = await axios.post(
-                `${SERVER_URI}/team/addTeam`, data
+                `${SERVER_URI}/position/addPosition`,
+                data
             );
+            console.log(response.data)
+
             dispatch({
-                type: TEAM_ADD_SUCESS,
+                type: POSITION_ADD_SUCESS,
                 payload: {
                     successMessage: response.data.message
                 },
@@ -58,7 +50,7 @@ export const AddTeamData = (data) => {
             let data = error.response.data.message;
             // console.log(data)
             dispatch({
-                type: TEAM_ADD_FAIL,
+                type: POSITION_ADD_FAIL,
                 payload: {
                     errorMessage: data,
                 },
@@ -67,13 +59,16 @@ export const AddTeamData = (data) => {
     };
 };
 
-export const GetAllTeams = () => {
+export const GetAllPosition = () => {
     return async (dispatch) => {
         try {
-            // userAuth(token);
-            const response = await axios.get(`${SERVER_URI}/team/getTeam`);
+
+            userAuth(token);
+
+            const response = await axios.get(`${SERVER_URI}/position/getPosition`);
+            // console.log(response.data)
             dispatch({
-                type: TEAM_GET_SUCESS,
+                type: POSITION_GET_SUCESS,
                 payload: {
                     data: response.data.data
                 },
@@ -82,7 +77,7 @@ export const GetAllTeams = () => {
             let data = error.response.data.message;
             console.log(data);
             dispatch({
-                type: TEAM_GET_FAIL,
+                type: POSITION_GET_FAIL,
                 payload: {
                     errorMessage: data,
                 },
@@ -91,28 +86,28 @@ export const GetAllTeams = () => {
     };
 };
 
-export const DeleteTeam = (data) => {
+export const DeletePosition = (data) => {
     console.log("action", data);
-    const teamid = data.teamid;
+    const posid = data.posid;
     const adminId = data.adminId;
-    console.log(teamid, adminId)
+    console.log(posid, adminId)
 
     return async (dispatch) => {
         try {
-            
+
             userAuth(token);
 
             const config = {
                 headers: {
-                    teamid: teamid,
+                    posid: posid,
                     adminId: adminId,
                 },
             };
 
-            const response = await axios.delete(`${SERVER_URI}/team/deleteTeam`, config);
+            const response = await axios.delete(`${SERVER_URI}/position/positionDelete`, config);
             console.log(response.data.message);
             dispatch({
-                type: TEAM_DELETE_SUCESS,
+                type: POSITION_DELETE_SUCESS,
                 payload: {
                     successMessage: response.data.message,
                 }
@@ -121,7 +116,7 @@ export const DeleteTeam = (data) => {
             let data = error.response.data.message;
             console.log(data);
             dispatch({
-                type: TEAM_DELETE_FAIL,
+                type: POSITION_DELETE_FAIL,
                 payload: {
                     errorMessage: data,
                 },
@@ -130,34 +125,34 @@ export const DeleteTeam = (data) => {
     };
 };
 
-export const UpdateTeam = (data) => {
+export const UpdatePosition = (data) => {
     console.log("update action", data);
-
+  
     return async (dispatch) => {
-        try {
-            
-            userAuth(token);
-
-            const response = await axios.patch(`${SERVER_URI}/team/updateTeam`, data);
-            console.log(response.data);
-            console.log(response.data.message);
-
-            dispatch({
-                type: TEAM_UPDATE_SUCESS,
-                payload: {
-                    successMessage: response.data.message,
-                }
-            })
-
-        } catch (error) {
-            let data = error.response.data.message;
-            console.log(data);
-            dispatch({
-                type: TEAM_UPDATE_FAIL,
-                payload: {
-                    errorMessage: data,
-                },
-            });
-        }
+      try {
+       
+        userAuth(token);
+  
+        const response = await axios.patch(`${SERVER_URI}/position/positionUpdate`, data);
+        console.log(response.data);
+        console.log(response.data.message);
+  
+        dispatch({
+          type: POSITION_UPDATE_SUCESS,
+          payload: {
+            successMessage: response.data.message,
+          }
+        })
+  
+      } catch (error) {
+        let data = error.response.data.message;
+        console.log(data);
+        dispatch({
+          type: POSITION_UPDATE_FAIL,
+          payload: {
+            errorMessage: data,
+          },
+        });
+      }
     }
-}
+  }

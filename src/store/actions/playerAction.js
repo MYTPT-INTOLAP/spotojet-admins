@@ -14,7 +14,10 @@ import {
 
 import { SERVER_URI } from '../../config/dev';
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbmFtZSI6IkluZHJhbmlsIiwibG5hbWUiOiJNb25kYWwiLCJwaG9uZSI6Ijk4NzY1NDI1ODkiLCJlbWFpbCI6ImFiYy5pbnRvbGFwQGdtYWlsLmNvbSIsInJvbGUiOiJDQWRtaW4iLCJ1c2VySWQiOiI2NGEyYjU5MmNlMDk4ZTkxMTNjOWUxZTQiLCJpYXQiOjE2ODg2MjAyMzEsImV4cCI6MTY4ODY0OTAzMX0.3FnGOLnaMFL3BfymH15c81bRyCXy1zsnoFvzOxKagFk"
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbmFtZSI6IkluZHJhbmlsIiwibG5hbWUiOiJNb25kYWwiLCJwaG9uZSI6Ijk4NzY1NDI1ODkiLCJlbWFpbCI6ImluZHJhbmlsLmludG9sYXBAZ21haWwuY29tIiwicm9sZSI6IlNBZG1pbiIsInVzZXJJZCI6IjY0YTJiMTM4MDAzNTdlYmE0N2FkMGY4MyIsImlhdCI6MTY4ODcyNzA5MSwiZXhwIjoxNjg4NzU1ODkxfQ.lzxv6OdGYROql1KTB4gdORmO2PASBeytrofd9dw1ldA" // sAdmin --> indranil.intolap@gmail.com
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbmFtZSI6ImFiYyIsImxuYW1lIjoiTW9uZGFsIiwicGhvbmUiOiI5ODc2NTQyNTg5IiwiZW1haWwiOiJhYmMuaW50b2xhcEBnbWFpbC5jb20iLCJyb2xlIjoiQ0FkbWluIiwidXNlcklkIjoiNjRhN2Y4NTIyNzdjZGQ2NTViODQwOThiIiwiaWF0IjoxNjg5NTk5OTU4LCJleHAiOjE2ODk2Mjg3NTh9.mJa8_Bbf5T6j6rEBfgJPJ9cnlIiWYv632-ueLJ_NSqo" // cAdmin --> abc.intolap@gmail.com
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbmFtZSI6Inh5IiwibG5hbWUiOiJ6IiwicGhvbmUiOiI5ODcyMjI0NDg5IiwiZW1haWwiOiJ0aXRhc21vbmRhbDI5OUBnbWFpbC5jb20iLCJyb2xlIjoiQ29hY2giLCJ1c2VySWQiOiI2NGE3ZGI1ZjhlZDM1NGQzODgzZmM0MWYiLCJpYXQiOjE2ODg3MjMwNTMsImV4cCI6MTY4ODc1MTg1M30.SmWfGhztSW7mLf36_IqW_AmMTNJagrI6qxlSbcQ_Fk0" // coach
+
 
 export const userAuth = (token) => {
   axios.interceptors.request.use(
@@ -59,7 +62,7 @@ export const AddPlayerData = (data) => {
 export const GetAllPlayers = () => {
   return async (dispatch) => {
     try {
-      // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbmFtZSI6IkluZHJhbmlsIiwibG5hbWUiOiJNb25kYWwiLCJwaG9uZSI6Ijk4NzY1NDI1ODkiLCJlbWFpbCI6ImFiYy5pbnRvbGFwQGdtYWlsLmNvbSIsInJvbGUiOiJDQWRtaW4iLCJ1c2VySWQiOiI2NGEyYjU5MmNlMDk4ZTkxMTNjOWUxZTQiLCJpYXQiOjE2ODg1Njg4MzIsImV4cCI6MTY4ODU5NzYzMn0.DkY6SWyCRgYgBE4fY4v2gES33EE19Y17yhvvFZVnOyA";
+      
 
       userAuth(token);
 
@@ -91,7 +94,6 @@ export const DeletePayer = (data) => {
 
   return async (dispatch) => {
     try {
-      // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbmFtZSI6IkluZHJhbmlsIiwibG5hbWUiOiJNb25kYWwiLCJwaG9uZSI6Ijk4NzY1NDI1ODkiLCJlbWFpbCI6ImFiYy5pbnRvbGFwQGdtYWlsLmNvbSIsInJvbGUiOiJDQWRtaW4iLCJ1c2VySWQiOiI2NGEyYjU5MmNlMDk4ZTkxMTNjOWUxZTQiLCJpYXQiOjE2ODg1Mzk5NzQsImV4cCI6MTY4ODU2ODc3NH0.lmL49APZnXn3exgb-C35HRRShFmV4QsU1NifQl3Ivyg";
 
       userAuth(token);
 
@@ -131,7 +133,7 @@ export const UpdatePlayer = (data) => {
       // const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbmFtZSI6IkluZHJhbmlsIiwibG5hbWUiOiJNb25kYWwiLCJwaG9uZSI6Ijk4NzY1NDI1ODkiLCJlbWFpbCI6ImFiYy5pbnRvbGFwQGdtYWlsLmNvbSIsInJvbGUiOiJDQWRtaW4iLCJ1c2VySWQiOiI2NGEyYjU5MmNlMDk4ZTkxMTNjOWUxZTQiLCJpYXQiOjE2ODg1Mzk5NzQsImV4cCI6MTY4ODU2ODc3NH0.lmL49APZnXn3exgb-C35HRRShFmV4QsU1NifQl3Ivyg";
       userAuth(token);
 
-      const response = await axios.put("http://localhost:8080/payer/payersUpdate", data);
+      const response = await axios.put(`${SERVER_URI}/payer/payersUpdate`, data);
       console.log(response.data);
       console.log(response.data.message);
 

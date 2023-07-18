@@ -37,11 +37,12 @@ export const navigations = [
   },
 
   {
-    name: 'Matches Details',
+    name: 'Match Parameters',
     icon: 'brightness_low',
-    children: [
-      { name: 'Position List', iconText: 'SI', path: '/pages/matchesDetails' },
-    ]
+    // children: [
+    //   { name: 'Position List', iconText: 'SI', path: '/pages/matchesDetails' },
+    // ]
+    path: '/pages/matchesDetails'
   },
   // Videos
 
@@ -100,14 +101,14 @@ export const navigations = [
   },
 
 
-  {
-    name: 'Positions Library',
-    icon: 'favorite',
-    children: [
-      { name: 'Add Positions Library', iconText: 'SI', path: '/pages/addPLibray' },
-      { name: 'List Positions Library', iconText: 'SU', path: '/pages/listPLibray' },
-    ]
-  },
+  // {
+  //   name: 'Positions Library',
+  //   icon: 'favorite',
+  //   children: [
+  //     { name: 'Add Positions Library', iconText: 'SI', path: '/pages/addPLibray' },
+  //     { name: 'List Positions Library', iconText: 'SU', path: '/pages/listPLibray' },
+  //   ]
+  // },
 
   { label: 'PAGES', type: 'label' },
   {

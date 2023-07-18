@@ -1,13 +1,13 @@
 import {
-    TEAM_ADD_SUCESS,
-    TEAM_ADD_FAIL,
-    TEAM_GET_SUCESS,
-    TEAM_GET_FAIL,
-    TEAM_UPDATE_SUCESS,
-    TEAM_UPDATE_FAIL,
-    TEAM_DELETE_SUCESS,
-    TEAM_DELETE_FAIL,
-} from "../types/teamTypes";
+    ADMIN_ADD_SUCESS,
+    ADMIN_ADD_FAIL,
+    ADMIN_GET_SUCESS,
+    ADMIN_GET_FAIL,
+    ADMIN_UPDATE_SUCESS,
+    ADMIN_UPDATE_FAIL,
+    ADMIN_DELETE_SUCESS,
+    ADMIN_DELETE_FAIL,
+} from "../types/adminTypes";
 
 const initialState = {
     loading: true,
@@ -16,54 +16,57 @@ const initialState = {
     data: [],
   };
 
-  export const TeamReducer = (state = initialState, action) =>{
+  export const AdminReducer = (state = initialState, action) =>{
     const { payload, type } = action;
-    if (type === TEAM_ADD_SUCESS) {
+    // console.log(payload);
+
+    if (type === ADMIN_ADD_SUCESS) {
         return {
           ...state,
           successMessage: payload.successMessage,
+          data: payload.data
         };
       }
-      if (type === TEAM_ADD_FAIL ) {
+      if (type === ADMIN_ADD_FAIL ) {
         return {
           ...state,
           errorMessage: payload.errorMessage,
         };
       }
-      if (type === TEAM_GET_SUCESS) {
+      if (type === ADMIN_GET_SUCESS) {
         return {
           ...state,
           data: payload.data,
           error: null,
         };
       }
-      if (type === TEAM_GET_FAIL) {
+      if (type === ADMIN_GET_FAIL) {
         return {
           ...state,
           data: null,
           error: payload.errorMessage,
         };
       }
-      if (type === TEAM_DELETE_SUCESS) {
+      if (type === ADMIN_DELETE_SUCESS) {
         console.log("reducer 58",payload)
         return {
           ...state,
           successMessage: payload.successMessage,
         };
       }
-      if (type === TEAM_DELETE_FAIL) {
+      if (type === ADMIN_DELETE_FAIL) {
         return {
           ...state,
           errorMessage: payload.errorMessage,
         };
       }
-      if (type === TEAM_UPDATE_SUCESS){
+      if (type === ADMIN_UPDATE_SUCESS){
         return{
           ...state,
           successMessage: payload.successMessage,
         }
       }
-      if(type === TEAM_UPDATE_FAIL){
+      if(type === ADMIN_UPDATE_FAIL){
         return {
           ...state,
           errorMessage: payload.errorMessage,

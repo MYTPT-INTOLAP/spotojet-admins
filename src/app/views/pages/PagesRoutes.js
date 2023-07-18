@@ -15,7 +15,7 @@ const ListCoach = Loadable(lazy(() => import('./Coaches/ListCoach')));
 const Position = Loadable(lazy(() => import('./Positions/Position')));
 
 
-const MatchesDetails = Loadable(lazy(() => import('./MatchesDetails/MatchesDetails')));
+const MatchesDetails = Loadable(lazy(() => import('./MatchParameters/MatchesDetails')));
 
 
 const AssessmentParameters = Loadable(lazy(() => import('./AssessmentParameters/CreateTemplate')));
